@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CandidateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+Route::get('/register/candidate', [CandidateController::class, 'showRegistrationForm'])->name('register_candidate')->middleware('user.type:candidate');
+Route::post('/register/candidate', [CandidateController::class, 'register'])->name('register_candidate.submit')->middleware('user.type:candidate');
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
+Route::get('/home/candidate', [App\Http\Controllers\HomeController::class, 'index_candidate'])->name('home_candidate')->middleware('user.type:candidate');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('user.type:employer');
