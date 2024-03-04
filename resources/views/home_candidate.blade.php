@@ -3,7 +3,7 @@
 @section('title', 'TTG RH')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Dashboard Employer</h1>
+    <h1 class="m-0 text-dark">Dashboard Candidato</h1>
 @stop
 
 @section('content')
