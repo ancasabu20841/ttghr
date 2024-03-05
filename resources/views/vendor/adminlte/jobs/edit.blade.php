@@ -17,15 +17,15 @@
             @method('PUT')
             <div class="card-body">
                 <div class="form-group">
-                    <label>Title:</label>
+                    <label>Titulo:</label>
                     <input type="text"  class="form-control" name="title" value="{{ $job->title }}">
                 </div>
                 <div class="form-group">
-                    <label>Description:</label>
+                    <label>Descripción:</label>
                     <textarea name="description" class="form-control" >{{ $job->description }}</textarea>
                 </div>
                 <div class="form-group">
-                    <label>Available:</label>
+                    <label>Disponible:</label>
                      <input type="checkbox" name="available" value="1" {{ $job->available ? 'checked' : '' }}>
                 </div>
 

@@ -8,6 +8,7 @@
 @stop
 @section('content')
 <div class="container">
+    @if ($applications)
     <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
@@ -31,7 +32,9 @@
             </tbody>
         </table>
         {{ $applications->links() }}
-
+    @else
+        <h1>No existen aplicaciones registradas actualmente</h1>
+    @endif
     </div>
 
 

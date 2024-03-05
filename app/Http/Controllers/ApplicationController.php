@@ -17,13 +17,17 @@ class ApplicationController extends Controller
     {
         $id = auth()->id();
         $emp  = Employer::where("user_id", "=", $id )->first();
-        $employer_id = $emp->id;
 
+        $applications = "";
+        if(isset($emp)){
+        $employer_id = $emp->id;
         $applications = Application::whereHas('job', function ($query) use ($employer_id) {
             $query->where('employer_id', $employer_id);
         })
             ->with('candidate', 'job')
             ->paginate(10);
+
+        }
 
         return view('adminlte::applications.index', compact('applications'));
     }
