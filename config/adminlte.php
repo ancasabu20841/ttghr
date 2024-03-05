@@ -309,8 +309,13 @@ return [
         ],
         [
             'text' => 'Ofertas',
+            'icon'    => 'fas fa-fw fa-table',
             'url' => 'jobs',
-
+        ],
+        [
+            'text' => 'Candidatos',
+            'icon'    => 'fas fa-fw fa-book',
+            'url' => 'applications',
         ],
 
     ],
