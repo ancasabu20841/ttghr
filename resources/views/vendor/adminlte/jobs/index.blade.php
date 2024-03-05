@@ -10,6 +10,7 @@
 @stop
 @section('content')
 <div class="container">
+    @if ($jobs)
     <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
@@ -39,7 +40,9 @@
             </tbody>
         </table>
         {{ $jobs->links() }}
-
+    @else
+        <h1>No existen empleos registrados actualmente</h1>
+    @endif
     </div>
 @stop
 

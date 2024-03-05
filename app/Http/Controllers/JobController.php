@@ -13,7 +13,15 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::paginate(10);
+        $id = auth()->id();
+        $emp  = Employer::where("user_id", "=", $id )->first();
+
+        $jobs = "";
+        if(isset($emp)){
+            $jobs = Job::where("employer_id", "=",$emp->id )->
+            paginate(10);
+        }
+
         return view('adminlte::jobs.index', compact('jobs'));
     }
 
