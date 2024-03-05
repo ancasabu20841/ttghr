@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Job;
+use App\Models\Employer;
 
 class JobController extends Controller
 {
@@ -11,7 +13,8 @@ class JobController extends Controller
      */
     public function index()
     {
-        //
+        $jobs = Job::paginate(10);
+        return view('adminlte::jobs.index', compact('jobs'));
     }
 
     /**
@@ -19,7 +22,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        //
+        return view('adminlte::jobs.create');
     }
 
     /**
@@ -27,38 +30,52 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id = auth()->id();
+        $emp  = Employer::where("user_id", "=", $id )->first();
+
+        $job = new Job();
+        $job->employer_id = $emp->id;
+        $job->title = $request->input('title');
+        $job->description = $request->input('description');
+        $job->available = $request->has('available');
+        $job->save();
+
+        return redirect()->route('jobs.index')->with('success', 'Oferta Creada con Exito');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $job = Job::findOrFail($id);
+        return view('adminlte::jobs.edit', compact('job'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+
+    public function update(Request $request, $id)
     {
-        //
+        $job = Job::findOrFail($id);
+        $request->except(['_token', '_method']);
+        $job->update($request->all());
+        return redirect()->route('jobs.index')->with('success', 'Oferta Actualizada');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+
+    public function destroy($id)
     {
-        //
+        $job = Job::findOrFail($id);
+        $request->except(['_token', '_method']);
+        $job->delete();
+
+        return redirect()->route('jobs.index')->with('success', 'Oferta Borrada');
+
     }
 }

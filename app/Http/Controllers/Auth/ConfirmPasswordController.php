@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
+use Illuminate\Support\Facades\Auth;
 
 class ConfirmPasswordController extends Controller
 {
@@ -25,7 +26,14 @@ class ConfirmPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function redirectTo()
+    {
+        if (Auth::user()->user_type == 'employer') {
+            return '/home';
+        } elseif (Auth::user()->user_type == 'candidate') {
+            return '/home/candidate';
+        }
+    }
 
     /**
      * Create a new controller instance.

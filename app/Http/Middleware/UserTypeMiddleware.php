@@ -10,6 +10,7 @@ class UserTypeMiddleware
 {
     public function handle(Request $request, Closure $next , $type)
     {
+
         if ($type == 'employer' && Auth::user()->user_type != 'employer') {
             abort(403, 'Unauthorized');
         }
