@@ -5,6 +5,7 @@ use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CandidateController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,3 +43,8 @@ Route::delete('/jobs/{id}', [JobController::class, 'destroy'])->name('jobs.destr
 Route::get('/applications', [ApplicationController::class, 'index'])->name('applications.index');
 
 Route::get('/candidates/{id}/references', [CandidateController::class,'showReferences'])->name('candidates.references');
+
+Route::get('/see_jobs', [JobController::class, 'findJobs'])->name('jobs.see');
+Route::get('/apply/{id}', [ApplicationController::class, 'apply'])->name('jobs.apply');
+
+Route::get('/see_applications', [ApplicationController::class, 'seeAplications'])->name('application.see');

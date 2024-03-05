@@ -1,3 +1,9 @@
+@php
+    $userType = Auth::user()->user_type;
+@endphp
+
+@if($item['user'] === $userType)
+
 <li @isset($item['id']) id="{{ $item['id'] }}" @endisset class="nav-item">
 
     <a class="nav-link {{ $item['class'] }} @isset($item['shift']) {{ $item['shift'] }} @endisset"
@@ -21,3 +27,4 @@
     </a>
 
 </li>
+@endif

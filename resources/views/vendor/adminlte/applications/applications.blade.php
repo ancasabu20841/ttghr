@@ -3,7 +3,7 @@
 @section('title', 'TTG RH')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Lista de Candidatos / Aplicaciones</h1>
+    <h1 class="m-0 text-dark">Mis Aplicaciones</h1>
 
 @stop
 @section('content')
@@ -14,8 +14,6 @@
                         <th scope="col">Tiulo</th>
                         <th scope="col">Candidato</th>
                         <th scope="col">Fecha</th>
-                        <th scope="col">CV</th>
-                        <th scope="col">Recomendaciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,8 +22,6 @@
                     <td>{{ $application->job->title }}</td>
                     <td>{{ $application->candidate->first_name }} {{ $application->candidate->last_name }}</td>
                     <td>{{ $application->created_at }}</td>
-                    <td><a href="{{ asset('storage/cv/'.$application->candidate->cv) }}" download>Download CV</a></td>
-                    <td> <a href="#" class="view-references" data-candidate-id="{{ $application->candidate->id }}">Ver referencias</a></td>
                 </tr>
                 @endforeach
             </tbody>

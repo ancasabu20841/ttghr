@@ -72,10 +72,18 @@ class JobController extends Controller
     public function destroy($id)
     {
         $job = Job::findOrFail($id);
-        $request->except(['_token', '_method']);
         $job->delete();
 
         return redirect()->route('jobs.index')->with('success', 'Oferta Borrada');
 
+    }
+    /**
+     * See list Jobs.
+     */
+
+    public function findJobs()
+    {
+        $jobs = Job::paginate(10);
+        return view('adminlte::jobs.see', compact('jobs'));
     }
 }
