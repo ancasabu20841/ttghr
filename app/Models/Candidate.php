@@ -24,5 +24,8 @@ class Candidate extends Model
         'user_id'
     ];
 
-
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
 }

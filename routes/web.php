@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CandidateController;
@@ -38,3 +39,6 @@ Route::get('/jobs/{id}/edit', [JobController::class, 'edit'])->name('jobs.edit')
 Route::put('/jobs/{id}', [JobController::class, 'update'])->name('jobs.update');
 Route::delete('/jobs/{id}', [JobController::class, 'destroy'])->name('jobs.destroy');
 
+Route::get('/applications', [ApplicationController::class, 'index'])->name('applications.index');
+
+Route::get('/candidates/{id}/references', [CandidateController::class,'showReferences'])->name('candidates.references');

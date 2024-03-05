@@ -14,4 +14,14 @@ class Job extends Model
         'description',
         'available'
     ];
+
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
+
+    public function employer()
+    {
+        return $this->belongsTo(Employer::class);
+    }
 }

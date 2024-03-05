@@ -22,4 +22,14 @@ class Employer extends Model
         'phone',
         'user_id'
     ];
+
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
+    }
+
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
 }
