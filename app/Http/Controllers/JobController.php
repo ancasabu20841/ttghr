@@ -86,4 +86,47 @@ class JobController extends Controller
         $jobs = Job::paginate(10);
         return view('adminlte::jobs.see', compact('jobs'));
     }
+
+    public function list()
+    {
+        $jobs = Job::with('employer')
+            ->where('available', 1)
+            ->orderBy('created_at', 'desc')
+            ->take(6)
+            ->get();
+
+        $jobs = $jobs->map(function ($job) {
+            return [
+                'title' => $job->title,
+                'description' => $job->description,
+                'company_name' => $job->employer->company_name,
+            ];
+        });
+
+        return response()->json($jobs);
+
+    }
+
+    public function searchJobs(Request $request)
+    {
+        $searchText = $request->get('term');
+
+        $jobs = Job::with('employer')->where('title', 'like', '%' . $searchText . '%')
+            ->orWhere('description', 'like', '%' . $searchText . '%')
+            ->orWhereHas('employer', function ($query) use ($searchText) {
+                $query->where('company_name', 'like', '%' . $searchText . '%');
+            }) ->orderBy('created_at', 'desc')
+            ->take(6)
+            ->get();
+
+        $jobs = $jobs->map(function ($job) {
+            return [
+                'title' => $job->title,
+                'description' => $job->description,
+                'company_name' => $job->employer->company_name,
+            ];
+        });
+
+        return response()->json($jobs);
+    }
 }
