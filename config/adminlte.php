@@ -301,7 +301,6 @@ return [
             'topnav_right' => true,
         ],
 
-
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
@@ -311,11 +310,25 @@ return [
             'text' => 'Ofertas',
             'icon'    => 'fas fa-fw fa-table',
             'url' => 'jobs',
+            'user' => 'employer',
         ],
         [
             'text' => 'Candidatos',
             'icon'    => 'fas fa-fw fa-book',
             'url' => 'applications',
+            'user' => 'employer',
+        ],
+        [
+            'text' => 'Ver Empleos',
+            'icon'    => 'fas fa-fw fa-eye',
+            'url' => 'see_jobs',
+            'user' => 'candidate',
+        ],
+        [
+            'text' => 'Mis Aplicaciones',
+            'icon'    => 'fas fa-fw fa-eye',
+            'url' => 'see_applications',
+            'user' => 'candidate',
         ],
 
     ],
