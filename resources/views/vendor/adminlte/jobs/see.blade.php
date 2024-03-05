@@ -4,9 +4,6 @@
 
 @section('content_header')
     <h1 class="m-0 text-dark">Lista de Empleos</h1>
-    <div class="col-sm-4">
-        <a href="{{ route('jobs.create') }}" class="btn btn-primary">Nueva Oferta</a>
-    </div>
 @stop
 @section('content')
 <div class="container">
