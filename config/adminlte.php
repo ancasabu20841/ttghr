@@ -301,12 +301,18 @@ return [
             'topnav_right' => true,
         ],
 
+
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
-         
+        [
+            'text' => 'Ofertas',
+            'url' => 'jobs',
+
+        ],
+
     ],
 
     /*
